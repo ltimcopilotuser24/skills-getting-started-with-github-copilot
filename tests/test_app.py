@@ -13,7 +13,9 @@ def test_get_activities():
 
 
 def test_signup_and_unregister():
-    activity = "Art Club"
+    response = client.get("/activities")
+    activities_data = response.json()
+    activity = next(iter(activities_data.keys()))
     email = "testuser@mergington.edu"
     # Ensure user is not registered
     client.post(f"/activities/{activity}/unregister?email={email}")
